@@ -35,11 +35,30 @@
   There are no helper functions provided this time.
   You're on your own, but feel free to write whatever helpers you need!
 */
+  var compareCards = function(card1, card2) {
+    var array = ['1','2','3','4','5','6','7','8','9','T','J','Q','K','A'];
+    return array.indexOf(card1.number) > array.indexOf(card2.number);
+  }
 
 var poker = {
+
   // Returns the name of the input hand.
   // See the specs for the required formats.
   labelHand: function(hand) {
+    var cards = hand.split(' ');
+    console.log(cards);
+    var result = {number: 2, suit: 'C'};
+    var hand = [];
+    cards.forEach(function(card, index, cards) {
+      hand.push({number: card[0], suit: card[1] }); 
+    });
+
+    hand.forEach(function(hand, index, hands) {
+      if  (compareCards(hand, result)) {
+        result = hand;  
+      }
+    });
+    return result.number + " High";
 
   },
 
