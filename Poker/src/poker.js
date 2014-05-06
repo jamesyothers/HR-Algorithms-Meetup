@@ -35,7 +35,7 @@
   There are no helper functions provided this time.
   You're on your own, but feel free to write whatever helpers you need!
 */
-  var compareCards = function(card1, card2) {
+  var compareCards = function(card1, card2) {                          //compare card numbers and return boolean
     var array = ['1','2','3','4','5','6','7','8','9','T','J','Q','K','A'];
     return array.indexOf(card1.number) > array.indexOf(card2.number);
   }
@@ -47,17 +47,50 @@ var poker = {
   labelHand: function(hand) {
     var cards = hand.split(' ');
     console.log(cards);
-    var result = {number: 2, suit: 'C'};
+    var result = {number: 2, suit: 'C'};                    //lowest card pair
     var hand = [];
-    cards.forEach(function(card, index, cards) {
-      hand.push({number: card[0], suit: card[1] }); 
+    cards.forEach(function(card, index, cards) {            //create array of objects
+      hand.push({number: card[0], suit: card[1] });         //each object has a number and suit property
     });
 
-    hand.forEach(function(hand, index, hands) {
+    hand.forEach(function(hand, index, hands) {             //compare all cards in a hand
       if  (compareCards(hand, result)) {
         result = hand;  
       }
     });
+
+    var numbers = {};
+    hand.forEach(function(hand, index, hands) {
+      
+      if ( !numbers[hand.number] ) {
+        numbers[hand.number] = 1;
+      } else {
+        numbers[hand.number] ++;
+      }
+
+    });
+    
+    for (var key of numbers ) {
+
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return result.number + " High";
 
   },
